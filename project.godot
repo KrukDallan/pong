@@ -1,0 +1,35 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Pong"
+run/main_scene="res://scenes/root/root.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/initial_position=Vector2i(576, 324)
+
+[global_group]
+
+Left_wall=""
+Right_wall=""
+Top_wall=""
+Bottom_wall=""
+Player=""
+ball=""
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

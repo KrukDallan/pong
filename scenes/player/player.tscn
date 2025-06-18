@@ -1,0 +1,114 @@
+[gd_scene load_steps=11 format=3 uid="uid://ow5eptqogl0t"]
+
+[ext_resource type="Texture2D" uid="uid://ce3n4mdcpy5jy" path="res://assets/stick.png" id="1_4gksh"]
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_xx0dh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5hsn"]
+size = Vector2(8.6, 6.14286)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bg6mu"]
+size = Vector2(8.6, 5.17143)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wipth"]
+size = Vector2(8.6, 5.17143)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4an2x"]
+size = Vector2(8.6, 5.17143)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cl7lm"]
+size = Vector2(8.6, 5.17143)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb2oj"]
+size = Vector2(8.6, 5.17143)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnfsn"]
+size = Vector2(8.6, 5.17143)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_chlap"]
+radius = 4.06327
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(5, 7)
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_xx0dh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 0.100002)
+scale = Vector2(1, 1.09375)
+texture = ExtResource("1_4gksh")
+
+[node name="Area0" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="Angle0" type="CollisionShape2D" parent="Area0"]
+position = Vector2(0, -0.0714285)
+shape = SubResource("RectangleShape2D_f5hsn")
+
+[node name="Area1" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="Angle1" type="CollisionShape2D" parent="Area1"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_bg6mu")
+
+[node name="Area2" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="Angle2" type="CollisionShape2D" parent="Area2"]
+position = Vector2(0, -9.8)
+shape = SubResource("RectangleShape2D_wipth")
+
+[node name="Area3" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="Angle3" type="CollisionShape2D" parent="Area3"]
+position = Vector2(-0.1, -15)
+shape = SubResource("RectangleShape2D_4an2x")
+
+[node name="Area4" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="Angle4" type="CollisionShape2D" parent="Area4"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_cl7lm")
+
+[node name="Area5" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="Angle5" type="CollisionShape2D" parent="Area5"]
+position = Vector2(0, 10.2)
+shape = SubResource("RectangleShape2D_pb2oj")
+
+[node name="Area6" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="Angle6" type="CollisionShape2D" parent="Area6"]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_rnfsn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_chlap")
+disabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area0" to="." method="_on_area_0_body_entered"]
+[connection signal="body_entered" from="Area1" to="." method="_on_area_1_body_entered"]
+[connection signal="body_entered" from="Area2" to="." method="_on_area_2_body_entered"]
+[connection signal="body_entered" from="Area3" to="." method="_on_area_3_body_entered"]
+[connection signal="body_entered" from="Area4" to="." method="_on_area_4_body_entered"]
+[connection signal="body_entered" from="Area5" to="." method="_on_area_5_body_entered"]
+[connection signal="body_entered" from="Area6" to="." method="_on_area_6_body_entered"]
