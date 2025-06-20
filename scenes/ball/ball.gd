@@ -4,7 +4,8 @@ extends RigidBody2D
 var first_impulse_val: int = 10
 var force: float = 10
 var current_direction = Vector2.ZERO
-var did_hit = false
+var did_hit: bool = false
+var can_start: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,15 +18,14 @@ func _process(delta: float) -> void:
 	pass
 	
 func _physics_process(delta: float) -> void:
+	if not can_start:
+		return
 	if not did_hit:
-		#self.apply_central_force(Vector2(first_impulse_val,0))
 		move_and_collide(Vector2(first_impulse_val,0))
 	else:
-		#self.apply_central_force(current_direction)
 		move_and_collide(current_direction)
 	
 
-	
 func push_away(direction:Vector2):
 	did_hit = true
 	if direction == Vector2.ZERO:
@@ -37,4 +37,7 @@ func push_away(direction:Vector2):
 	force += 1 
 	if force >= 31:
 		force = 31
+		
+func set_can_start(val:bool):
+	can_start = val
 	

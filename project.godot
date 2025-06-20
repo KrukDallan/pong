@@ -29,6 +29,7 @@ Top_wall=""
 Bottom_wall=""
 Player=""
 ball=""
+score=""
 
 [rendering]
 

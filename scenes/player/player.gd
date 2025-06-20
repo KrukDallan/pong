@@ -3,21 +3,24 @@ extends CharacterBody2D
 
 const SPEED = 500.0
 
+func _enter_tree() -> void:
+	set_multiplayer_authority(name.to_int())
+	print(self.name)
 
 func _physics_process(delta: float) -> void:
-	velocity *= delta
+	if is_multiplayer_authority():
+		velocity *= delta
 
-	# Handle jump.
-	if Input.is_key_pressed(KEY_UP):
-		velocity.y = -1
-	elif Input.is_key_pressed(KEY_DOWN):
-		velocity.y = 1
-	else:
-		velocity.y = 0
-		
-	velocity *= SPEED
+		if Input.is_key_pressed(KEY_UP):
+			velocity.y = -1
+		elif Input.is_key_pressed(KEY_DOWN):
+			velocity.y = 1
+		else:
+			velocity.y = 0
+			
+		velocity *= SPEED
 
-	move_and_slide()
+		move_and_slide()
 
 
 func push_ball(vector: Vector2, body:Node2D):

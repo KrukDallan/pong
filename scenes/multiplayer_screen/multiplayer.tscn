@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv7xvnp1kihph"]
+
+[ext_resource type="Script" path="res://scenes/multiplayer_screen/multiplayer.gd" id="1_tk3yr"]
+[ext_resource type="PackedScene" uid="uid://ow5eptqogl0t" path="res://scenes/player/player.tscn" id="2_v7663"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_tk3yr")
+player_scene = ExtResource("2_v7663")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1922.0
+offset_bottom = 1094.0
+color = Color(0, 0, 0, 1)
+
+[node name="Host" type="Button" parent="."]
+offset_left = 904.0
+offset_top = 473.0
+offset_right = 998.0
+offset_bottom = 504.0
+theme_override_font_sizes/font_size = 32
+text = "Host Game"
+
+[node name="Join" type="Button" parent="."]
+offset_left = 910.0
+offset_top = 568.0
+offset_right = 918.0
+offset_bottom = 576.0
+theme_override_font_sizes/font_size = 32
+text = "Find Game"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/player/player.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Join" to="." method="_on_join_pressed"]

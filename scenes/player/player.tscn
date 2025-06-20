@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ow5eptqogl0t"]
+[gd_scene load_steps=12 format=3 uid="uid://ow5eptqogl0t"]
 
 [ext_resource type="Texture2D" uid="uid://ce3n4mdcpy5jy" path="res://assets/stick.png" id="1_4gksh"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_xx0dh"]
@@ -26,6 +26,11 @@ size = Vector2(8.6, 5.17143)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_chlap"]
 radius = 4.06327
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_w8ojf"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(5, 7)
@@ -104,6 +109,9 @@ disabled = true
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_w8ojf")
 
 [connection signal="body_entered" from="Area0" to="." method="_on_area_0_body_entered"]
 [connection signal="body_entered" from="Area1" to="." method="_on_area_1_body_entered"]
