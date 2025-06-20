@@ -8,7 +8,11 @@ extends Node2D
 
 @export
 var player_scene: PackedScene
+@export
+var ball_scene: PackedScene
+@export
 var manage_player1 = true
+var id = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,15 +28,23 @@ func push_ball(vector: Vector2, body:Node2D):
 		$Timer.start(0.01)
 		
 		
-func add_player(id=1):
+func add_player():
 	var player = player_scene.instantiate()
 	player.name = str(id)
+	id +=1
 	call_deferred("add_child",player)
 	if manage_player1:
 		position_player1(player)
 		manage_player1 = false
+		print(manage_player1!=null)
+		$Score.visible = true
 	else:
 		position_player2(player)
+		var ball = get_tree().get_first_node_in_group("ball")
+		if ball != null:
+			ball.set_can_start(true)
+			
+		
 	$Multiplayer.visible = false
 	
 func position_player1(player):
@@ -40,6 +52,10 @@ func position_player1(player):
 	
 func position_player2(player):
 	player.position = Vector2(1800,540)
+
+func add_ball():
+	var ball = ball_scene.instantiate()
+	call_deferred("add_child",ball)
 
 func _on_area_2d_left_body_entered(body: Node2D) -> void:
 	print("Left wall was hit by:", body)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b380ltoowsym6"]
+[gd_scene load_steps=10 format=3 uid="uid://b380ltoowsym6"]
 
 [ext_resource type="Script" path="res://scenes/root/root.gd" id="1_xtru0"]
+[ext_resource type="PackedScene" uid="uid://c5376womfmgjy" path="res://scenes/ball/ball.tscn" id="3_c766c"]
 [ext_resource type="PackedScene" uid="uid://ow5eptqogl0t" path="res://scenes/player/player.tscn" id="3_ti7x4"]
 [ext_resource type="PackedScene" uid="uid://0ewxopjju6pe" path="res://scenes/score/score.tscn" id="4_2soux"]
 [ext_resource type="PackedScene" uid="uid://bv7xvnp1kihph" path="res://scenes/multiplayer_screen/multiplayer.tscn" id="5_egrn5"]
@@ -14,9 +15,12 @@ size = Vector2(27, 1086)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xj5yo"]
 size = Vector2(1959, 23)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nbllq"]
+
 [node name="SceneRoot" type="Node2D"]
 script = ExtResource("1_xtru0")
 player_scene = ExtResource("3_ti7x4")
+ball_scene = ExtResource("3_c766c")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 1915.0
@@ -78,6 +82,9 @@ offset_left = 965.0
 offset_top = 97.0
 offset_right = 965.0
 offset_bottom = 97.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nbllq")
 
 [connection signal="body_entered" from="Area2D_Left" to="." method="_on_area_2d_left_body_entered"]
 [connection signal="body_entered" from="Area2D_Right" to="." method="_on_area_2d_right_body_entered"]
