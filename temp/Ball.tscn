@@ -12,9 +12,16 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 
 [node name="Ball" type="RigidBody2D"]
+position = Vector2(666, 310)
+mass = 0.001
+gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qsnjx")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_wna2y")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 379.0
+offset_bottom = 191.0

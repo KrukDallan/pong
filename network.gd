@@ -11,24 +11,33 @@ func host():
 	p.create_server(12345)
 	multiplayer.multiplayer_peer = p
 	# spawn host player + ball when hosting
-	spawn_ball()
-
+	rpc("spawn_ball")
+	
 func join(ip):
 	var p = ENetMultiplayerPeer.new()
 	p.create_client(ip, 12345)
 	multiplayer.multiplayer_peer = p
 
-@rpc("authority", "call_remote")
+		
+@rpc("authority", "call_local")
 func spawn_ball():
-	print("Spawning ball")
-	if has_node("Ball"): return
-	print("Node does not have any ball instantiated, proceding with instantiating it")
+	if has_node("Ball"):
+		return  # Prevent double spawn
+
 	var ball = ball_scene.instantiate()
 	ball.name = "Ball"
-	ball.set_multiplayer_authority(1)
-	call_deferred("add_child",ball)
+
+	# Host gets authority, clients just sync
 	if multiplayer.is_server():
-		print("Changing linear velocity")
+		ball.set_multiplayer_authority(multiplayer.get_unique_id())
+	else:
+		# Give authority to the host (usually 1)
+		ball.set_multiplayer_authority(1)
+
+	call_deferred("add_child",ball)
+
+	# Only the host applies physics
+	if multiplayer.is_server():
 		ball.linear_velocity = Vector2(300, 0)
 		
 func _on_peer_connected(id: int) -> void:
