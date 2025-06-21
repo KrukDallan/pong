@@ -7,10 +7,8 @@ var current_direction = Vector2.ZERO
 var did_hit: bool = false
 var can_start: bool = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	await get_tree().process_frame
-	#self.apply_impulse(Vector2(first_impulse_val,0), Vector2(0,0))
+func _enter_tree() -> void:
+	set_multiplayer_authority(1)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

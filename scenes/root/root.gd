@@ -32,6 +32,7 @@ func push_ball(vector: Vector2, body:Node2D):
 func add_player(id=1):
 	var player = player_scene.instantiate()
 	player.set_multiplayer_authority(id)
+	$Ball.set_multiplayer_authority(1)
 	player.name = str(id)
 	call_deferred("add_child",player)
 	$Multiplayer.visible = false
@@ -47,12 +48,9 @@ func add_player(id=1):
 		manage_player1 = false
 		$Score.visible = true
 		
-	
 func position_player1(player):
 	player.position = Vector2(120,540)
 	
-func position_player2(player):
-	player.position = Vector2(1800,540)
 
 @rpc("authority", "call_remote")
 func add_ball():
