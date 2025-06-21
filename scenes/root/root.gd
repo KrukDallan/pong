@@ -65,6 +65,7 @@ func position_player2(player):
 @rpc("authority", "call_remote")
 func add_ball():
 	var ball = ball_scene.instantiate()
+	ball.set_multiplayer_authority(1)  # host usually has peer ID 1
 	call_deferred("add_child",ball)
 
 func _on_area_2d_left_body_entered(body: Node2D) -> void:
