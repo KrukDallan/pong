@@ -20,7 +20,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	$Score.point_p1()
 	
 
 func push_ball(vector: Vector2, body:Node2D):
@@ -52,11 +52,11 @@ func position_player1(player):
 	player.position = Vector2(120,540)
 	
 
-@rpc("authority", "call_remote")
-func add_ball():
-	var ball = ball_scene.instantiate()
-	ball.set_multiplayer_authority(1)  # host usually has peer ID 1
-	call_deferred("add_child",ball)
+#@rpc("authority", "call_remote")
+#func add_ball():
+	#var ball = ball_scene.instantiate()
+	#ball.set_multiplayer_authority(1)  # host usually has peer ID 1
+	#call_deferred("add_child",ball)
 
 func _on_area_2d_left_body_entered(body: Node2D) -> void:
 	print("Left wall was hit by:", body)
