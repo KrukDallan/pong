@@ -11,7 +11,8 @@ func host():
 	p.create_server(12345)
 	multiplayer.multiplayer_peer = p
 	# spawn host player + ball when hosting
-	rpc("spawn_ball")
+	#rpc("spawn_ball")
+	$MultiplayerSpawner.add_spawnable_scene("res://temp/Ball.tscn")
 	
 func join(ip):
 	var p = ENetMultiplayerPeer.new()
@@ -23,7 +24,12 @@ func join(ip):
 func spawn_ball():
 	if has_node("Ball"):
 		return  # Prevent double spawn
-
+	if multiplayer.is_server():
+		var ball = $MultiplayerSpawner.spawn()
+		ball.linear_velocity = Vector2(300, 0)
+		return
+	return
+	
 	var ball = ball_scene.instantiate()
 	ball.name = "Ball"
 

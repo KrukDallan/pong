@@ -23,5 +23,8 @@ offset_bottom = 403.0
 theme_override_font_sizes/font_size = 48
 text = "JOIN"
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+
 [connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="JoinButton" to="." method="_on_join_button_pressed"]
