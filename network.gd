@@ -20,12 +20,15 @@ func join(ip):
 
 @rpc("authority", "call_remote")
 func spawn_ball():
+	print("Spawning ball")
 	if has_node("Ball"): return
+	print("Node does not have any ball instantiated, proceding with instantiating it")
 	var ball = ball_scene.instantiate()
 	ball.name = "Ball"
 	ball.set_multiplayer_authority(1)
-	add_child(ball)
+	call_deferred("add_child",ball)
 	if multiplayer.is_server():
+		print("Changing linear velocity")
 		ball.linear_velocity = Vector2(300, 0)
 		
 func _on_peer_connected(id: int) -> void:
