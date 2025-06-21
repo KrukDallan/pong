@@ -10,6 +10,7 @@ var can_start: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().process_frame
+	can_start= true
 	#self.apply_impulse(Vector2(first_impulse_val,0), Vector2(0,0))
 
 

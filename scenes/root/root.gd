@@ -39,10 +39,11 @@ func add_player(id=1):
 	#print("manage player1: ", manage_player1)
 	rpc("show_score")
 	print("Adding ball")
-	rpc("add_ball")
-	var ball = get_tree().get_first_node_in_group("ball")
-	print(	"mp size: ",multiplayer.get_peers().size())
-	if ball != null:
+	
+	
+	if multiplayer.get_peers().size() >= 1:
+		rpc("add_ball")
+		var ball = get_tree().get_first_node_in_group("ball")
 		ball.set_can_start(true)
 	if manage_player1:
 		position_player1(player)
