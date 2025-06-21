@@ -23,7 +23,6 @@ func _process(delta: float) -> void:
 	pass
 	
 
-
 func push_ball(vector: Vector2, body:Node2D):
 	if body.is_in_group("ball") and $Timer.time_left <= 0:
 		body.push_away(vector)
@@ -36,19 +35,17 @@ func add_player(id=1):
 	player.name = str(id)
 	call_deferred("add_child",player)
 	$Multiplayer.visible = false
+	$Ball.visible = true
 	#print("manage player1: ", manage_player1)
 	rpc("show_score")
 	print("Adding ball")
 	
-	
-	if multiplayer.is_server():
-		rpc("add_ball")
+	#if multiplayer.is_server():
+		#rpc("add_ball")
 	if manage_player1:
 		position_player1(player)
 		manage_player1 = false
 		$Score.visible = true
-	else:
-		position_player2(player)
 		
 	
 func position_player1(player):

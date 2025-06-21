@@ -29,7 +29,7 @@ theme_override_font_sizes/font_size = 32
 text = "Find Game"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scenes/player/player.tscn")
+_spawnable_scenes = PackedStringArray("res://scenes/player/player.tscn", "res://scenes/ball/ball.tscn")
 spawn_path = NodePath("..")
 
 [connection signal="pressed" from="Host" to="." method="_on_host_pressed"]

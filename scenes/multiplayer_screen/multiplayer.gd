@@ -20,11 +20,6 @@ func _on_join_pressed() -> void:
 	peer.create_client("192.168.1.187",1027)
 	multiplayer.multiplayer_peer = peer
 
-func add_player(id=1):
-	var player = player_scene.instantiate()
-	player.name = str(id)
-	print("Miao")
-	call_deferred("add_child",player)
 	
 func exit_game(id):
 	multiplayer.peer_disconnected.connect(del_player)

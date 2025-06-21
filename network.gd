@@ -5,6 +5,7 @@ extends Node2D
 func _ready():
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
+	$MultiplayerSpawner.spawn_path = get_path()
 
 func host():
 	var p = ENetMultiplayerPeer.new()
@@ -12,7 +13,7 @@ func host():
 	multiplayer.multiplayer_peer = p
 	# spawn host player + ball when hosting
 	#rpc("spawn_ball")
-	$MultiplayerSpawner.add_spawnable_scene("res://temp/Ball.tscn")
+	#$MultiplayerSpawner.add_spawnable_scene("res://temp/Ball.tscn")
 	
 func join(ip):
 	var p = ENetMultiplayerPeer.new()
@@ -24,14 +25,9 @@ func join(ip):
 func spawn_ball():
 	if has_node("Ball"):
 		return  # Prevent double spawn
+	var ball
 	if multiplayer.is_server():
-		var ball = $MultiplayerSpawner.spawn()
-		ball.linear_velocity = Vector2(300, 0)
-		return
-	return
-	
-	var ball = ball_scene.instantiate()
-	ball.name = "Ball"
+		pass
 
 	# Host gets authority, clients just sync
 	if multiplayer.is_server():

@@ -8,6 +8,8 @@ func _enter_tree() -> void:
 	print(self.name)
 	if self.name.to_int() != 1:
 		position = Vector2(1800,540)
+		var ball = get_tree().get_first_node_in_group("ball")
+		ball.set_can_start(true)
 
 func _physics_process(delta: float) -> void:
 
