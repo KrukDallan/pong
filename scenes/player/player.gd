@@ -8,6 +8,9 @@ func _enter_tree() -> void:
 	print(self.name)
 
 func _physics_process(delta: float) -> void:
+	if not multiplayer.is_local_peer():
+		return  # Only process input for the local player
+
 	if is_multiplayer_authority():
 		velocity *= delta
 
@@ -48,3 +51,7 @@ func _on_area_5_body_entered(body: Node2D) -> void:
 
 func _on_area_6_body_entered(body: Node2D) -> void:
 	push_ball(Vector2(-1,-0.6), body)
+	
+@rpc("authority", "call_local")
+func update_position(pos):
+	global_position = pos

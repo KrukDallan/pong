@@ -12,7 +12,6 @@ var player_scene: PackedScene
 var ball_scene: PackedScene
 @export
 var manage_player1 = true
-var id = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,16 +27,14 @@ func push_ball(vector: Vector2, body:Node2D):
 		$Timer.start(0.01)
 		
 		
-func add_player(tmp=1):
+func add_player(id=1):
 	var player = player_scene.instantiate()
+	player.set_multiplayer_authority(id)
 	player.name = str(id)
-	id +=1
 	call_deferred("add_child",player)
-	print("manage player1", manage_player1)
 	if manage_player1:
 		position_player1(player)
 		manage_player1 = false
-		print(manage_player1!=null)
 		$Score.visible = true
 	else:
 		position_player2(player)

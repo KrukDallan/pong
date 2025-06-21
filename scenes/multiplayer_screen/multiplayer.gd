@@ -17,7 +17,7 @@ func _on_host_pressed() -> void:
 	self.get_owner().add_player()
 
 func _on_join_pressed() -> void:
-	peer.create_client("192.168.1.189",1027)
+	peer.create_client("192.168.1.187",1027)
 	multiplayer.multiplayer_peer = peer
 
 func add_player(id=1):
