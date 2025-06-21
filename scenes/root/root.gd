@@ -28,11 +28,12 @@ func push_ball(vector: Vector2, body:Node2D):
 		$Timer.start(0.01)
 		
 		
-func add_player():
+func add_player(tmp=1):
 	var player = player_scene.instantiate()
 	player.name = str(id)
 	id +=1
 	call_deferred("add_child",player)
+	print("manage player1", manage_player1)
 	if manage_player1:
 		position_player1(player)
 		manage_player1 = false
@@ -43,7 +44,6 @@ func add_player():
 		var ball = get_tree().get_first_node_in_group("ball")
 		if ball != null:
 			ball.set_can_start(true)
-			
 		
 	$Multiplayer.visible = false
 	
