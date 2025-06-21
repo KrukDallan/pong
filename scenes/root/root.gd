@@ -41,6 +41,7 @@ func add_player(id=1):
 	print("Adding ball")
 	rpc("add_ball")
 	var ball = get_tree().get_first_node_in_group("ball")
+	print(	"mp size: ",multiplayer.get_peers().size())
 	if ball != null:
 		ball.set_can_start(true)
 	if manage_player1:
