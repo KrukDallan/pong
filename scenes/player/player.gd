@@ -6,10 +6,10 @@ const SPEED = 500.0
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 	print(self.name)
+	if self.name.to_int() != 1:
+		position = Vector2(1800,540)
 
 func _physics_process(delta: float) -> void:
-	if not multiplayer.is_local_peer():
-		return  # Only process input for the local player
 
 	if is_multiplayer_authority():
 		velocity *= delta

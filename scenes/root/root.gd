@@ -20,6 +20,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+
 
 func push_ball(vector: Vector2, body:Node2D):
 	if body.is_in_group("ball") and $Timer.time_left <= 0:
@@ -32,6 +34,9 @@ func add_player(id=1):
 	player.set_multiplayer_authority(id)
 	player.name = str(id)
 	call_deferred("add_child",player)
+	$Multiplayer.visible = false
+	print("manage player1: ", manage_player1)
+	rpc("show_score")
 	if manage_player1:
 		position_player1(player)
 		manage_player1 = false
@@ -42,7 +47,7 @@ func add_player(id=1):
 		if ball != null:
 			ball.set_can_start(true)
 		
-	$Multiplayer.visible = false
+	
 	
 func position_player1(player):
 	player.position = Vector2(120,540)
@@ -73,3 +78,7 @@ func _on_area_2d_top_body_entered(body: Node2D) -> void:
 func _on_area_2d_bottom_body_entered(body: Node2D) -> void:
 	print(body)
 	push_ball(Vector2.ZERO,body)
+
+@rpc("authority", "call_remote")
+func show_score():
+	$Score.visible = true
