@@ -7,7 +7,7 @@ var player_scene: PackedScene
 
 func _ready() -> void:
 	print(self.get_owner())
-	$MultiplayerSpawner.spawn_path = self.get_owner().get_path()
+	#$MultiplayerSpawner.spawn_path = self.get_owner().get_path()
 	
 
 func _on_host_pressed() -> void:
