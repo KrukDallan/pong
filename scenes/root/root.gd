@@ -37,6 +37,11 @@ func add_player(id=1):
 	$Multiplayer.visible = false
 	print("manage player1: ", manage_player1)
 	rpc("show_score")
+	add_ball()
+	if multiplayer.get_peers().size() >= 2:
+		var ball = get_tree().get_first_node_in_group("ball")
+		if ball != null:
+			ball.set_can_start(true)
 	if manage_player1:
 		position_player1(player)
 		manage_player1 = false
