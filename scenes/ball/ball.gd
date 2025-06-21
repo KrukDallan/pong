@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 @export
-var first_impulse_val: int = 10
+var first_impulse_val: int = -10
 var force: float = 10
 var current_direction = Vector2.ZERO
 var did_hit: bool = false
@@ -9,7 +9,7 @@ var can_start: bool = false
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(1)
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

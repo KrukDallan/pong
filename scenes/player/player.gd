@@ -13,6 +13,10 @@ func _physics_process(delta: float) -> void:
 
 	if is_multiplayer_authority():
 		velocity *= delta
+		
+		if Input.is_key_pressed(KEY_P):
+			var ball = get_tree().get_first_node_in_group("ball")
+			ball.set_can_start(true)
 
 		if Input.is_key_pressed(KEY_UP):
 			velocity.y = -1

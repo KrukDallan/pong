@@ -20,7 +20,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(len(get_tree().get_nodes_in_group("Player")))
+	pass
 	
 
 func push_ball(vector: Vector2, body:Node2D):
