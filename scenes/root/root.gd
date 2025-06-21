@@ -41,10 +41,8 @@ func add_player(id=1):
 	print("Adding ball")
 	
 	
-	if multiplayer.get_peers().size() >= 1:
+	if multiplayer.is_server():
 		rpc("add_ball")
-		var ball = get_tree().get_first_node_in_group("ball")
-		ball.set_can_start(true)
 	if manage_player1:
 		position_player1(player)
 		manage_player1 = false
@@ -52,8 +50,6 @@ func add_player(id=1):
 	else:
 		position_player2(player)
 		
-		
-	
 	
 func position_player1(player):
 	player.position = Vector2(120,540)

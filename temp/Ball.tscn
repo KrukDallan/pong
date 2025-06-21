@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b77avbcho55e8"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1qwao"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qsnjx"]
+radius = 76.0592
+
+[node name="Node2D" type="RigidBody2D"]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_1qwao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qsnjx")

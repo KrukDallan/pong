@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvl5q8u16p0cd"]
+
+[ext_resource type="Script" path="res://network.gd" id="1_qq8oa"]
+[ext_resource type="PackedScene" uid="uid://b77avbcho55e8" path="res://temp/Ball.tscn" id="2_pdq5c"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_qq8oa")
+
+[node name="Node2D" parent="." instance=ExtResource("2_pdq5c")]
+
+[node name="HostButton" type="Button" parent="."]
+offset_left = 876.0
+offset_top = 132.0
+offset_right = 1011.0
+offset_bottom = 207.0
+theme_override_font_sizes/font_size = 48
+text = "HOST"
+
+[node name="JoinButton" type="Button" parent="."]
+offset_left = 882.0
+offset_top = 328.0
+offset_right = 994.0
+offset_bottom = 403.0
+theme_override_font_sizes/font_size = 48
+text = "JOIN"
+
+[connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="JoinButton" to="." method="_on_join_button_pressed"]
