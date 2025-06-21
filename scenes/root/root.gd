@@ -12,6 +12,7 @@ var player_scene: PackedScene
 var ball_scene: PackedScene
 @export
 var manage_player1 = true
+var ball_managed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,7 +20,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if multiplayer.get_peers().size() >= 2 and not ball_managed:
+		ball_managed = true
+		rpc("add_ball")
+		var ball = get_tree().get_first_node_in_group("ball")
+		if ball != null:
+			ball.set_can_start(true)
 	
 
 
@@ -37,11 +43,7 @@ func add_player(id=1):
 	$Multiplayer.visible = false
 	print("manage player1: ", manage_player1)
 	rpc("show_score")
-	rpc("add_ball")
-	if multiplayer.get_peers().size() >= 2:
-		var ball = get_tree().get_first_node_in_group("ball")
-		if ball != null:
-			ball.set_can_start(true)
+	
 	if manage_player1:
 		position_player1(player)
 		manage_player1 = false
