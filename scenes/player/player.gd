@@ -10,7 +10,7 @@ func _enter_tree() -> void:
 		position = Vector2(1800,540)
 
 func _physics_process(delta: float) -> void:
-
+	print(get_multiplayer_authority())
 	if is_multiplayer_authority():
 		velocity *= delta
 		
