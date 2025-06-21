@@ -37,7 +37,7 @@ func add_player(id=1):
 	$Multiplayer.visible = false
 	print("manage player1: ", manage_player1)
 	rpc("show_score")
-	add_ball()
+	rpc("add_ball")
 	if multiplayer.get_peers().size() >= 2:
 		var ball = get_tree().get_first_node_in_group("ball")
 		if ball != null:
@@ -60,6 +60,7 @@ func position_player1(player):
 func position_player2(player):
 	player.position = Vector2(1800,540)
 
+@rpc("authority", "call_remote")
 func add_ball():
 	var ball = ball_scene.instantiate()
 	call_deferred("add_child",ball)
