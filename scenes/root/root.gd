@@ -20,12 +20,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if multiplayer.get_peers().size() >= 2 and not ball_managed:
-		ball_managed = true
-		rpc("add_ball")
-		var ball = get_tree().get_first_node_in_group("ball")
-		if ball != null:
-			ball.set_can_start(true)
+	pass
 	
 
 
@@ -41,9 +36,15 @@ func add_player(id=1):
 	player.name = str(id)
 	call_deferred("add_child",player)
 	$Multiplayer.visible = false
-	print("manage player1: ", manage_player1)
+	#print("manage player1: ", manage_player1)
 	rpc("show_score")
-	
+	print("Adding ball")
+	if multiplayer.get_peers().size() >= 2 and not ball_managed:
+		ball_managed = true
+		rpc("add_ball")
+		var ball = get_tree().get_first_node_in_group("ball")
+		if ball != null:
+			ball.set_can_start(true)
 	if manage_player1:
 		position_player1(player)
 		manage_player1 = false
