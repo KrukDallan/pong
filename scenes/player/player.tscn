@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ow5eptqogl0t"]
+[gd_scene load_steps=14 format=3 uid="uid://ow5eptqogl0t"]
 
 [ext_resource type="Texture2D" uid="uid://ce3n4mdcpy5jy" path="res://assets/stick.png" id="1_4gksh"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_xx0dh"]
@@ -7,7 +7,7 @@
 size = Vector2(6.2, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5hsn"]
-size = Vector2(8.6, 6.14286)
+size = Vector2(8.6, 6.28572)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bg6mu"]
 size = Vector2(8.6, 4.3)
@@ -38,6 +38,12 @@ properties/2/path = NodePath(".:collision_mask")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88ssj"]
+size = Vector2(8, 0.857142)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbxlq"]
+size = Vector2(8.2, 0.642855)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(5, 7)
 collision_layer = 4
@@ -58,7 +64,7 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="Angle0" type="CollisionShape2D" parent="Area0"]
-position = Vector2(0, -0.0714285)
+position = Vector2(0, -0.142856)
 shape = SubResource("RectangleShape2D_f5hsn")
 
 [node name="Area1" type="Area2D" parent="."]
@@ -117,6 +123,18 @@ autostart = true
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_w8ojf")
 
+[node name="AreaBottom" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaBottom"]
+position = Vector2(1.19209e-07, 17.8571)
+shape = SubResource("RectangleShape2D_88ssj")
+
+[node name="AreaTop" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTop"]
+position = Vector2(-0.1, -17.25)
+shape = SubResource("RectangleShape2D_hbxlq")
+
 [connection signal="body_entered" from="Area0" to="." method="_on_area_0_body_entered"]
 [connection signal="body_entered" from="Area1" to="." method="_on_area_1_body_entered"]
 [connection signal="body_entered" from="Area2" to="." method="_on_area_2_body_entered"]
@@ -124,3 +142,5 @@ replication_config = SubResource("SceneReplicationConfig_w8ojf")
 [connection signal="body_entered" from="Area4" to="." method="_on_area_4_body_entered"]
 [connection signal="body_entered" from="Area5" to="." method="_on_area_5_body_entered"]
 [connection signal="body_entered" from="Area6" to="." method="_on_area_6_body_entered"]
+[connection signal="body_entered" from="AreaBottom" to="." method="_on_area_bottom_body_entered"]
+[connection signal="body_entered" from="AreaTop" to="." method="_on_area_top_body_entered"]
