@@ -9,6 +9,11 @@ func _ready() -> void:
 	print(self.get_owner())
 	#$MultiplayerSpawner.spawn_path = self.get_owner().get_path()
 	
+	
+func _process(delta: float) -> void:
+	if Input.is_key_pressed(KEY_ENTER):
+		if $TextEdit.text != "":
+			_on_search_pressed()
 
 func _on_host_pressed() -> void:
 	peer.create_server(1027)
@@ -19,6 +24,7 @@ func _on_host_pressed() -> void:
 func _on_join_pressed() -> void:
 	$Search.visible = true
 	$TextEdit.visible = true
+	$TextEdit.grab_focus()
 
 	
 func _on_search_pressed() -> void:

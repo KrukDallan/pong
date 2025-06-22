@@ -11,6 +11,9 @@ var can_start: bool = false
 
 var counter = 0
 
+@export
+var wait_after_reset = false
+
 func _enter_tree() -> void:
 	if is_multiplayer_authority():
 		set_physics_process(true)
@@ -19,11 +22,12 @@ func _enter_tree() -> void:
 		set_physics_process(false)
 
 func _physics_process(delta: float) -> void:
-	counter += delta
-	if counter >=1.5:
-		#print("is multip auth: ", is_multiplayer_authority())
-		#print("is physics processing: ", is_physics_processing())
-		counter = 0
+	if wait_after_reset:
+		if $Timer.time_left <= 0:
+			wait_after_reset = false
+
+		else:
+			return
 	if !is_multiplayer_authority():
 		return
 	if not can_start:
@@ -54,4 +58,5 @@ func reset_force():
 	print("Resetting force")
 	force = 10
 	current_direction = Vector2(1,0)*force
+	$Timer.start(1)
 	
