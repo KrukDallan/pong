@@ -17,7 +17,14 @@ func _on_host_pressed() -> void:
 	self.get_owner().add_player()
 
 func _on_join_pressed() -> void:
-	peer.create_client("192.168.1.187",1027)
+	$Search.visible = true
+	$TextEdit.visible = true
+
+	
+func _on_search_pressed() -> void:
+	var user_ip = $TextEdit.text
+	#"192.168.1.187"
+	peer.create_client(user_ip,1027)
 	multiplayer.multiplayer_peer = peer
 
 	
