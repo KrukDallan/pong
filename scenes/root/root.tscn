@@ -96,6 +96,7 @@ offset_bottom = 97.0
 replication_config = SubResource("SceneReplicationConfig_nbllq")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://temp/Ball.tscn", "res://scenes/player/player.tscn")
 spawn_path = NodePath("..")
 
 [connection signal="body_entered" from="Area2D_Left" to="." method="_on_area_2d_left_body_entered"]
