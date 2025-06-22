@@ -32,6 +32,8 @@ func _physics_process(delta: float) -> void:
 
 func push_ball(vector: Vector2, body:Node2D):
 	if body.is_in_group("ball") and $Timer.time_left <= 0:
+		if self.name.to_int() == 1:
+			vector = -vector
 		body.push_away(vector)
 		$Timer.start(0.05)
 
