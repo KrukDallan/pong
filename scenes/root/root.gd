@@ -73,11 +73,11 @@ func reset_ball():
 	ball.can_start = true
 
 func _on_area_2d_left_body_entered(body: Node2D) -> void:
-	$Score.point_p1()
+	$Score.point_p2()
 	await reset_ball()
 
 func _on_area_2d_right_body_entered(body: Node2D) -> void:
-	$Score.point_p2()
+	$Score.point_p1()
 	await reset_ball()
 	
 func _on_area_2d_top_body_entered(body: Node2D) -> void:
