@@ -53,5 +53,5 @@ func set_can_start(val:bool):
 func reset_force():
 	print("Resetting force")
 	force = 10
-	current_direction = Vector2(1,0)
+	current_direction = Vector2(1,0)*force
 	
