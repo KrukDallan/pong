@@ -2,9 +2,11 @@ extends RigidBody2D
 
 @export
 var first_impulse_val: int = -10
+@export
 var force: float = 10
 var current_direction = Vector2.ZERO
 var did_hit: bool = false
+@export
 var can_start: bool = false
 
 var counter = 0
