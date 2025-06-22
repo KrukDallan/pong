@@ -38,7 +38,7 @@ func push_ball(vector: Vector2, body:Node2D):
 func add_player(id=1):
 	var player = player_scene.instantiate()
 	player.set_multiplayer_authority(id)
-	#player.name = str(id)
+	player.name = str(id)
 	call_deferred("add_child",player)
 	
 	print("Adding ball")
@@ -59,9 +59,11 @@ func add_player(id=1):
 
 @rpc("authority", "call_local")
 func add_ball():
-	var ball = ball_scene.instantiate()
-	ball.set_multiplayer_authority(1)  # host usually has peer ID 1
-	call_deferred("add_child",ball)
+	var ball_node = get_tree().get_first_node_in_group("ball")
+	if ball_node == null:
+		var ball = ball_scene.instantiate()
+		ball.set_multiplayer_authority(1)  # host usually has peer ID 1
+		call_deferred("add_child",ball)
 
 func _on_area_2d_left_body_entered(body: Node2D) -> void:
 	print("Left wall was hit by:", body.name)
