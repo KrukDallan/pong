@@ -58,22 +58,19 @@ func add_player(id=1):
 		
 	
 func add_ball():
-	#print(len(get_tree().get_nodes_in_group("ball")))
-	var ball = ball_scene.instantiate()
-	ball.set_multiplayer_authority(1)  # host usually has peer ID 1
-	call_deferred("add_child",ball)
-	var balls = get_tree().get_nodes_in_group("ball")
-	#get_tree().queue_delete()
-	if len(get_tree().get_nodes_in_group("ball"))>1:
-		get_tree().queue_delete(ball)
+	if len(get_tree().get_nodes_in_group("ball")) < 1:
+		var ball = ball_scene.instantiate()
+		ball.set_multiplayer_authority(1)  # host usually has peer ID 1
+		call_deferred("add_child",ball)
+		var balls = get_tree().get_nodes_in_group("ball")
 		
 	
 func reset_ball():
 	var ball = get_tree().get_first_node_in_group("ball")
 	ball.position = Vector2(960,540)
+	await ball.reset_force()
 
 func _on_area_2d_left_body_entered(body: Node2D) -> void:
-	#print("Left wall was hit by:", body.name)
 	$Score.point_p1()
 	reset_ball()
 

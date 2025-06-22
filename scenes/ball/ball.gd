@@ -10,14 +10,11 @@ var can_start: bool = false
 var counter = 0
 
 func _enter_tree() -> void:
-	#set_multiplayer_authority(1)
 	if is_multiplayer_authority():
 		set_physics_process(true)
 	else:
 		visible = false
 		set_physics_process(false)
-
-	# Physics and collision logic here
 
 func _physics_process(delta: float) -> void:
 	counter += delta
@@ -42,8 +39,9 @@ func push_away(direction:Vector2):
 		current_direction = -current_direction.normalized()*force
 	else:
 		current_direction=direction.normalized()*force
-		print(current_direction)
+		#print(current_direction)
 	force += 1 
+	print("Force is: ", force)
 	if force >= 31:
 		force = 31
 		
@@ -51,5 +49,7 @@ func set_can_start(val:bool):
 	can_start = val
 	
 func reset_force():
+	print("Resetting force")
+	await get_tree().create_timer(1.5).timeout
 	force = 10
 	
