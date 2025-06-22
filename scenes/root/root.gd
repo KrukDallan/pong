@@ -38,7 +38,7 @@ func push_ball(vector: Vector2, body:Node2D):
 func add_player(id=1):
 	var player = player_scene.instantiate()
 	player.set_multiplayer_authority(id)
-	player.name = str(id)
+	#player.name = str(id)
 	call_deferred("add_child",player)
 	
 	print("Adding ball")
