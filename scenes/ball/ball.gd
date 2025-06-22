@@ -22,11 +22,11 @@ func _enter_tree() -> void:
 		set_physics_process(false)
 
 func _physics_process(delta: float) -> void:
-	if wait_after_reset:
-		if $Timer.time_left <= 0:
-			wait_after_reset = false
-		else:
-			return
+	#if wait_after_reset:
+		#if $Timer.time_left <= 0:
+			#wait_after_reset = false
+		#else:
+			#return
 	if !is_multiplayer_authority():
 		return
 	if not can_start:
@@ -57,5 +57,5 @@ func reset_force():
 	print("Resetting force")
 	force = 10
 	current_direction = Vector2(1,0)*force
-	$Timer.start(1)
+	#$Timer.start(1)
 	
