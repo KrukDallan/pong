@@ -50,6 +50,5 @@ func set_can_start(val:bool):
 	
 func reset_force():
 	print("Resetting force")
-	await get_tree().create_timer(1.5).timeout
 	force = 10
 	

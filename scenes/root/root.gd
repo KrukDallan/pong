@@ -68,7 +68,8 @@ func add_ball():
 func reset_ball():
 	var ball = get_tree().get_first_node_in_group("ball")
 	ball.position = Vector2(960,540)
-	await ball.reset_force()
+	await get_tree().create_timer(1.5).timeout
+	ball.reset_force()
 
 func _on_area_2d_left_body_entered(body: Node2D) -> void:
 	$Score.point_p1()
