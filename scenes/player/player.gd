@@ -5,12 +5,12 @@ const SPEED = 500.0
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
-	print(self.name)
 	if self.name.to_int() != 1:
 		position = Vector2(1800,540)
+	else:
+		position = Vector2(120,540)
 
 func _physics_process(delta: float) -> void:
-	print(get_multiplayer_authority())
 	if is_multiplayer_authority():
 		velocity *= delta
 		
@@ -32,6 +32,10 @@ func _physics_process(delta: float) -> void:
 
 func push_ball(vector: Vector2, body:Node2D):
 	if body.is_in_group("ball") and $Timer.time_left <= 0:
+		if self.name.to_int() == 1:
+			print("before: ",vector)
+			vector = -vector
+			print("after: ",vector)
 		body.push_away(vector)
 		$Timer.start(0.05)
 

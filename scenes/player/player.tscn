@@ -7,7 +7,7 @@
 size = Vector2(8.6, 6.14286)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bg6mu"]
-size = Vector2(8.6, 5.17143)
+size = Vector2(8.6, 4.3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wipth"]
 size = Vector2(8.6, 5.17143)
@@ -16,7 +16,7 @@ size = Vector2(8.6, 5.17143)
 size = Vector2(8.6, 5.17143)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cl7lm"]
-size = Vector2(8.6, 5.17143)
+size = Vector2(8.6, 4.58571)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pb2oj"]
 size = Vector2(8.6, 5.17143)
@@ -57,7 +57,7 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="Angle1" type="CollisionShape2D" parent="Area1"]
-position = Vector2(0, -5)
+position = Vector2(0, -5.43572)
 shape = SubResource("RectangleShape2D_bg6mu")
 
 [node name="Area2" type="Area2D" parent="."]
@@ -81,7 +81,7 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="Angle4" type="CollisionShape2D" parent="Area4"]
-position = Vector2(0, 5)
+position = Vector2(0, 5.29286)
 shape = SubResource("RectangleShape2D_cl7lm")
 
 [node name="Area5" type="Area2D" parent="."]
