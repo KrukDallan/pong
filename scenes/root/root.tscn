@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b380ltoowsym6"]
+[gd_scene load_steps=12 format=3 uid="uid://b380ltoowsym6"]
 
 [ext_resource type="Script" path="res://scenes/root/root.gd" id="1_xtru0"]
 [ext_resource type="PackedScene" uid="uid://c5376womfmgjy" path="res://scenes/ball/ball.tscn" id="3_c766c"]
@@ -9,11 +9,16 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xfsj3"]
 size = Vector2(22, 1095)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebg3q"]
-size = Vector2(27, 1086)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xj5yo"]
 size = Vector2(1959, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhu3v"]
+size = Vector2(1964, 25)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1caca"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h5fu4"]
+size = Vector2(1960, 22)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nbllq"]
 properties/0/path = NodePath(".:manage_player1")
@@ -48,13 +53,6 @@ collision_mask = 6
 position = Vector2(67, 537.5)
 shape = SubResource("RectangleShape2D_xfsj3")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Area2D_Left"]
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Left/StaticBody2D"]
-position = Vector2(53.5, 533)
-shape = SubResource("RectangleShape2D_ebg3q")
-
 [node name="Area2D_Right" type="Area2D" parent="." groups=["Right_wall"]]
 position = Vector2(1918, 5)
 collision_mask = 6
@@ -70,6 +68,14 @@ collision_mask = 6
 position = Vector2(969.5, 1.5)
 shape = SubResource("RectangleShape2D_xj5yo")
 
+[node name="StaticBody2D2" type="StaticBody2D" parent="Area2D_Top"]
+position = Vector2(-26, -26)
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Top/StaticBody2D2"]
+position = Vector2(997, 12.5)
+shape = SubResource("RectangleShape2D_uhu3v")
+
 [node name="Area2D_Bottom" type="Area2D" parent="." groups=["Bottom_wall"]]
 position = Vector2(-13, 1078)
 collision_mask = 6
@@ -77,6 +83,15 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Bottom"]
 position = Vector2(969.5, 1.5)
 shape = SubResource("RectangleShape2D_xj5yo")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Area2D_Bottom"]
+position = Vector2(0, 24)
+collision_mask = 6
+physics_material_override = SubResource("PhysicsMaterial_1caca")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Bottom/StaticBody2D"]
+position = Vector2(970, 1)
+shape = SubResource("RectangleShape2D_h5fu4")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

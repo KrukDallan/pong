@@ -45,16 +45,13 @@ func add_player(id=1):
 	if is_multiplayer_authority():
 		add_ball()
 	
-	$Multiplayer.visible = false
-	#print("manage player1: ", manage_player1)
-	rpc("show_score")
-
-	
-	#if multiplayer.is_server():
-		#rpc("add_ball")
-	if manage_player1:
-		manage_player1 = false
-		$Score.visible = true
+		$Multiplayer.visible = false
+		#print("manage player1: ", manage_player1)
+		rpc("show_score")
+		
+		if manage_player1:
+			manage_player1 = false
+			$Score.visible = true
 		
 	
 func add_ball():
@@ -63,7 +60,6 @@ func add_ball():
 		ball.set_multiplayer_authority(1)  # host usually has peer ID 1
 		call_deferred("add_child",ball)
 		var balls = get_tree().get_nodes_in_group("ball")
-		
 	
 func reset_ball():
 	var ball = get_tree().get_first_node_in_group("ball")
@@ -81,11 +77,9 @@ func _on_area_2d_right_body_entered(body: Node2D) -> void:
 	await reset_ball()
 	
 func _on_area_2d_top_body_entered(body: Node2D) -> void:
-	print(body)
 	push_ball(Vector2.ZERO,body)
 
 func _on_area_2d_bottom_body_entered(body: Node2D) -> void:
-	print(body)
 	push_ball(Vector2.ZERO,body)
 
 @rpc("authority", "call_remote")

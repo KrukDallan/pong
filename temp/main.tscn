@@ -1,35 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvl5q8u16p0cd"]
 
-[ext_resource type="Script" path="res://network.gd" id="1_qq8oa"]
 [ext_resource type="PackedScene" uid="uid://b77avbcho55e8" path="res://temp/Ball.tscn" id="2_pdq5c"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djiu3"]
+size = Vector2(272, 207)
+
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_qq8oa")
-ball_scene = ExtResource("2_pdq5c")
 
-[node name="HostButton" type="Button" parent="."]
-offset_left = 876.0
-offset_top = 132.0
-offset_right = 1011.0
-offset_bottom = 207.0
-theme_override_font_sizes/font_size = 48
-text = "HOST"
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
 
-[node name="JoinButton" type="Button" parent="."]
-offset_left = 882.0
-offset_top = 328.0
-offset_right = 994.0
-offset_bottom = 403.0
-theme_override_font_sizes/font_size = 48
-text = "JOIN"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(126, 93.5)
+shape = SubResource("RectangleShape2D_djiu3")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://temp/Ball.tscn")
-spawn_path = NodePath("..")
-spawn_limit = 1
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(970, 534)
-
-[connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
-[connection signal="pressed" from="JoinButton" to="." method="_on_join_button_pressed"]
+[node name="CollisionShape2D" parent="." instance=ExtResource("2_pdq5c")]
+position = Vector2(69, 305)

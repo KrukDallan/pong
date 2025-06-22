@@ -24,6 +24,7 @@ func _on_join_pressed() -> void:
 func _on_search_pressed() -> void:
 	var user_ip = $TextEdit.text
 	#"192.168.1.187"
+	multiplayer.multiplayer_peer.close()
 	peer.create_client(user_ip,1027)
 	multiplayer.multiplayer_peer = peer
 

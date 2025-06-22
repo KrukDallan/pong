@@ -13,22 +13,21 @@ func _enter_tree() -> void:
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
 		velocity *= delta
-		
-		if Input.is_key_pressed(KEY_P):
-			var ball = get_tree().get_first_node_in_group("ball")
-			ball.set_can_start(true)
+		var direction = Vector2.ZERO
 
 		if Input.is_key_pressed(KEY_UP):
 			velocity.y = -1
+			#direction.y = -1
 		elif Input.is_key_pressed(KEY_DOWN):
 			velocity.y = 1
+			#direction.y = 1
 		else:
 			velocity.y = 0
+			#direction.y = 0
 			
 		velocity *= SPEED
-
 		move_and_slide()
-
+		#move_and_collide(direction*SPEED)
 
 func push_ball(vector: Vector2, body:Node2D):
 	if body.is_in_group("ball") and $Timer.time_left <= 0:
