@@ -25,7 +25,6 @@ func _physics_process(delta: float) -> void:
 	if wait_after_reset:
 		if $Timer.time_left <= 0:
 			wait_after_reset = false
-
 		else:
 			return
 	if !is_multiplayer_authority():
