@@ -27,7 +27,12 @@ func _physics_process(delta: float) -> void:
 			
 		velocity *= SPEED
 		move_and_slide()
-		#move_and_collide(direction*SPEED)
+		if self.name.to_int() == 1:
+			if position.x != 120:
+				position.x = 120
+		else:
+			if position.x != 1800:
+				position.x = 1800
 
 func push_ball(vector: Vector2, body:Node2D):
 	if body.is_in_group("ball") and $Timer.time_left <= 0:
