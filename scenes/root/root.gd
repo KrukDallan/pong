@@ -22,7 +22,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	counter += delta
-	if counter >= 2:
+	if len(get_tree().get_nodes_in_group("Player")) == 2:
 		var ball = get_tree().get_first_node_in_group("ball")
 		if ball != null:
 			ball.can_start = true
@@ -73,11 +73,11 @@ func reset_ball():
 
 func _on_area_2d_left_body_entered(body: Node2D) -> void:
 	$Score.point_p1()
-	reset_ball()
+	await reset_ball()
 
 func _on_area_2d_right_body_entered(body: Node2D) -> void:
 	$Score.point_p2()
-	reset_ball()
+	await reset_ball()
 	
 func _on_area_2d_top_body_entered(body: Node2D) -> void:
 	print(body)
