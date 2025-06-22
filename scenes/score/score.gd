@@ -19,4 +19,4 @@ func point_p1():
 
 func point_p2():
 	p2_score += 1
-	$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer/Score2.text = str(p2_score) 
+	$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer2/Score2	.text = str(p2_score) 

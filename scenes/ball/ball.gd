@@ -50,3 +50,6 @@ func push_away(direction:Vector2):
 func set_can_start(val:bool):
 	can_start = val
 	
+func reset_force():
+	force = 10
+	

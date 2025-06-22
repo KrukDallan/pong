@@ -42,7 +42,8 @@ func add_player(id=1):
 	call_deferred("add_child",player)
 	
 	print("Adding ball")
-	rpc("add_ball")
+	if is_multiplayer_authority():
+		add_ball()
 	
 	$Multiplayer.visible = false
 	#print("manage player1: ", manage_player1)
@@ -56,8 +57,6 @@ func add_player(id=1):
 		$Score.visible = true
 		
 	
-
-@rpc("authority", "call_local")
 func add_ball():
 	#print(len(get_tree().get_nodes_in_group("ball")))
 	var ball = ball_scene.instantiate()
@@ -65,8 +64,9 @@ func add_ball():
 	call_deferred("add_child",ball)
 	var balls = get_tree().get_nodes_in_group("ball")
 	#get_tree().queue_delete()
-	for b in balls:
-		print(b)
+	if len(get_tree().get_nodes_in_group("ball"))>1:
+		get_tree().queue_delete(ball)
+		
 	
 func reset_ball():
 	var ball = get_tree().get_first_node_in_group("ball")
