@@ -14,6 +14,7 @@ func _enter_tree() -> void:
 	if is_multiplayer_authority():
 		set_physics_process(true)
 	else:
+		visible = false
 		set_physics_process(false)
 
 	# Physics and collision logic here

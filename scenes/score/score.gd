@@ -1,6 +1,7 @@
 extends Control
 
 var p1_score = 0
+var p2_score = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,3 +15,8 @@ func _process(delta: float) -> void:
 func point_p1():
 	p1_score += 1
 	$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer/Score1.text = str(p1_score) 
+
+
+func point_p2():
+	p2_score += 1
+	$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer/Score2.text = str(p2_score) 

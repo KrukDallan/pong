@@ -59,21 +59,27 @@ func add_player(id=1):
 
 @rpc("authority", "call_local")
 func add_ball():
+	#print(len(get_tree().get_nodes_in_group("ball")))
 	var ball = ball_scene.instantiate()
 	ball.set_multiplayer_authority(1)  # host usually has peer ID 1
 	call_deferred("add_child",ball)
+	var balls = get_tree().get_nodes_in_group("ball")
+	#get_tree().queue_delete()
+	for b in balls:
+		print(b)
+	
+func reset_ball():
+	var ball = get_tree().get_first_node_in_group("ball")
+	ball.position = Vector2(960,540)
 
 func _on_area_2d_left_body_entered(body: Node2D) -> void:
-	print("Left wall was hit by:", body.name)
-	push_ball(Vector2(1,0), body)
-	# make ball spawn in the middle and push here in a random direction
-	# then update the score
+	#print("Left wall was hit by:", body.name)
+	$Score.point_p1()
+	reset_ball()
 
 func _on_area_2d_right_body_entered(body: Node2D) -> void:
-	print("Right wall was hit by:", body)
-	push_ball(Vector2(-1,0), body)
-	# make ball spawn in the middle and push here in a random direction
-	# then update the score
+	$Score.point_p2()
+	reset_ball()
 	
 func _on_area_2d_top_body_entered(body: Node2D) -> void:
 	print(body)
