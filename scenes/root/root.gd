@@ -69,7 +69,6 @@ func reset_ball():
 	var ball = get_tree().get_first_node_in_group("ball")
 	ball.position = Vector2(960,540)
 	ball.can_start = false
-	await get_tree().create_timer(1.5).timeout
 	ball.reset_force()
 	ball.can_start = true
 
