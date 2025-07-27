@@ -46,7 +46,7 @@ func push_away(direction:Vector2):
 		current_direction=direction.normalized()*force
 		#print(current_direction)
 	force += 1 
-	print("Force is: ", force)
+	#print("Force is: ", force)
 	if force >= 31:
 		force = 31
 		

@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://b380ltoowsym6"]
+[gd_scene load_steps=13 format=3 uid="uid://b380ltoowsym6"]
 
 [ext_resource type="Script" path="res://scenes/root/root.gd" id="1_xtru0"]
 [ext_resource type="PackedScene" uid="uid://c5376womfmgjy" path="res://scenes/ball/ball.tscn" id="3_c766c"]
+[ext_resource type="PackedScene" uid="uid://bshnexxok8b3f" path="res://scenes/cpu/cpu.tscn" id="3_fkk0p"]
 [ext_resource type="PackedScene" uid="uid://ow5eptqogl0t" path="res://scenes/player/player.tscn" id="3_ti7x4"]
 [ext_resource type="PackedScene" uid="uid://0ewxopjju6pe" path="res://scenes/score/score.tscn" id="4_2soux"]
 [ext_resource type="PackedScene" uid="uid://bv7xvnp1kihph" path="res://scenes/multiplayer_screen/multiplayer.tscn" id="5_egrn5"]
@@ -34,6 +35,7 @@ properties/2/replication_mode = 1
 [node name="SceneRoot" type="Node2D"]
 script = ExtResource("1_xtru0")
 player_scene = ExtResource("3_ti7x4")
+cpu_scene = ExtResource("3_fkk0p")
 ball_scene = ExtResource("3_c766c")
 
 [node name="Background" type="ColorRect" parent="."]

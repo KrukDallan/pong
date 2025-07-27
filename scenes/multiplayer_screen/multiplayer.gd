@@ -58,3 +58,9 @@ func del_player(id):
 @rpc("any_peer","call_local")
 func _del_player(id):
 	get_node(str(id)).queue_free()
+
+
+func _on_cpu_pressed() -> void:
+	get_tree().get_first_node_in_group("score").rename_to_cpu()
+	self.get_owner().add_player()
+	self.get_owner().add_cpu()

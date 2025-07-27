@@ -12,6 +12,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
+func rename_to_cpu():
+	$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/Player2.text = "CPU"
+	
 func point_p1():
 	p1_score += 1
 	$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer/Score1.text = str(p1_score) 

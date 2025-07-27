@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 
-const SPEED = 500.0
+const SPEED = 600.0
+
+var frequency = 0
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
@@ -11,28 +13,25 @@ func _enter_tree() -> void:
 		position = Vector2(120,540)
 
 func _physics_process(delta: float) -> void:
-	if is_multiplayer_authority():
-		velocity = Vector2.ZERO
-		var direction = Vector2.ZERO
-
-		if Input.is_key_pressed(KEY_UP):
-			velocity.y = -1
-			#direction.y = -1
-		elif Input.is_key_pressed(KEY_DOWN):
-			velocity.y = 1
-			#direction.y = 1
-		else:
-			velocity.y = 0
-			#direction.y = 0
-			
-		velocity *= SPEED
-		move_and_slide()
-		if self.name.to_int() == 1:
-			if position.x != 120:
-				position.x = 120
-		else:
-			if position.x != 1800:
-				position.x = 1800
+	velocity = Vector2.ZERO
+	var ball = get_tree().get_first_node_in_group("ball")
+	# Calculate difference in y positions (float)
+	var diff = ball.position.y - self.position.y
+	var direction = 0
+	# Move paddle towards the ball with a speed limit
+	if abs(diff) > 5:  # Deadzone to avoid jitter
+		direction = sign(diff)  # 1 if ball is below, -1 if above
+	
+	# Set velocity accordingly, only vertical movement
+	velocity = Vector2(0, direction * SPEED)
+	#velocity.y = lerp(velocity.y, direction * SPEED, 0.05)
+	move_and_slide()
+	if self.name.to_int() == 1:
+		if position.x != 120:
+			position.x = 120
+	else:
+		if position.x != 1800:
+			position.x = 1800
 
 func push_ball(vector: Vector2, body:Node2D):
 	if body.is_in_group("ball") and $Timer.time_left <= 0:
@@ -68,6 +67,3 @@ func _on_area_bottom_body_entered(body: Node2D) -> void:
 func _on_area_top_body_entered(body: Node2D) -> void:
 	push_ball(Vector2(-1,0.6), body)
 	
-@rpc("authority", "call_local")
-func update_position(pos):
-	global_position = pos

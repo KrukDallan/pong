@@ -9,6 +9,8 @@ extends Node2D
 @export
 var player_scene: PackedScene
 @export
+var cpu_scene: PackedScene
+@export
 var ball_scene: PackedScene
 @export
 var manage_player1 = true
@@ -52,7 +54,12 @@ func add_player(id=1):
 		if manage_player1:
 			manage_player1 = false
 			$Score.visible = true
-		
+
+func add_cpu():
+	var cpu = cpu_scene.instantiate()
+	cpu.set_multiplayer_authority(2)
+	cpu.name = str(2)
+	call_deferred("add_child",cpu)
 	
 func add_ball():
 	if len(get_tree().get_nodes_in_group("ball")) < 1:
